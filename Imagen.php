@@ -45,8 +45,8 @@ if(isset($_GET["exec"])){
 		}
 }
 //ejecuta las sentencias
-function insert($name,$type,$size,$file,$histogram){
-	$imagen = ["id"=>null,"name"=>$name,"type"=>$type,"size"=>$size,"file"=>$file,"histogram"=>$histogram];
+function insert($name,$type,$size,$file){
+	$imagen = ["id"=>null,"name"=>$name,"type"=>$type,"size"=>$size,"file"=>$file];
 	global $db,$table;
 	$r = $db->insert($table,$imagen);
 	$respuesta = [
