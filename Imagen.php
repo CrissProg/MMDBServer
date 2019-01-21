@@ -45,6 +45,9 @@ if(isset($_GET["exec"])){
 		}
 }
 //ejecuta las sentencias
+/*function insert($name,$type,$size,$file,$histogram){
+	$imagen = ["id"=>null,"name"=>$name,"type"=>$type,"size"=>$size,"file"=>$file,"file"=>$histogram]; Aqui intentamos meter el json a la columna histogram de la base de datos
+	*/
 function insert($name,$type,$size,$file){
 	$imagen = ["id"=>null,"name"=>$name,"type"=>$type,"size"=>$size,"file"=>$file];
 	global $db,$table;
