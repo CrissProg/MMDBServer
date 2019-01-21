@@ -5,9 +5,11 @@ require_once 'libs/Pahoz/MySQLiManager/MySQLiManager.php';
 $db = new MySQLiManager('localhost','root','','mmdb');
 $table = "Imagen";
 
+//tipo de peticion
 if(isset($_GET["exec"])){
 	if($_GET["exec"] != null && $_GET["exec"] != ""){
 			switch ($_GET["exec"]){
+				//si falta algun atribbuto termina el proceso
 				case "insert":
 					if(!isset($_POST["name"]) ||
 					!isset($_POST["type"]) ||
@@ -15,19 +17,23 @@ if(isset($_GET["exec"])){
 					!isset($_POST["file"])){
 						die("DIE!!!!!!");
 					}else{
+						//manda los atributos
 						insert($_POST["name"],$_POST["type"],
 						$_POST["size"],$_POST["file"]);
 						
 					}
 				break;
 				case "select":
+				//consulta un id en especifico
 					if(isset($_POST["id"])){
 						select($_POST["id"]);
 					}else{
+						//consulta todo
 						select();
 					}
 				break;
 				case "delete":
+				//elimina un registro
 					if(isset($_POST["id"])){
 						del($_POST["id"]);
 					}else{
@@ -38,9 +44,9 @@ if(isset($_GET["exec"])){
 			die("La función <b>".$_GET['exec']."</b> no existe");
 		}
 }
-
-function insert($name,$type,$size,$file){
-	$imagen = ["id"=>null,"name"=>$name,"type"=>$type,"size"=>$size,"file"=>$file];
+//ejecuta las sentencias
+function insert($name,$type,$size,$file,$histogram){
+	$imagen = ["id"=>null,"name"=>$name,"type"=>$type,"size"=>$size,"file"=>$file,"histogram"=>$histogram];
 	global $db,$table;
 	$r = $db->insert($table,$imagen);
 	$respuesta = [
